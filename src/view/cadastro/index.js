@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { auth } from '../../config/firebase';
 import 'firebase/compat/auth';
 import './cadastro.css';
+import Navbar from '../../componentes/navbar/index';
 
 
 
@@ -50,6 +51,9 @@ function NovoUsuario(){
 
 
     return(
+        <>
+        <Navbar />
+
         <div className="form-cadastro">
             <form className="text-center form-login mx-auto mt-5">
                 <h1 className="h3 mb-3 text-balck font-weight-bold">Cadastro</h1>
@@ -73,6 +77,7 @@ function NovoUsuario(){
                 </div>
             </form>
         </div>
+        </>
     )
 }
 

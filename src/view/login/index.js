@@ -42,9 +42,9 @@ function Login(){
                 </div>
 
                 <div className="opcoes-login mt-5">
-                <Link to = 'Cadastro' className="mx-2">Recuperar Senha</Link>
+                <Link to = '/Cadastro' className="mx-2">Recuperar Senha</Link>
                 <spam className = "text-white">&#9733;</spam>
-                <Link to = 'Cadastro' className="mx-2">Quero Cadastrar</Link>
+                <Link to = '/Cadastro' className="mx-2">Quero Cadastrar</Link>
                 </div>
             </form>
         </div>
