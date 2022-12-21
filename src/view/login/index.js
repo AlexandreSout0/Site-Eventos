@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import './login.css';
-import { auth } from '../../config/firebase';
-import 'firebase/compat/auth';
 import {Link} from 'react-router-dom';
+
+import {auth,db} from '../../config/firebase';
+import 'firebase/auth';
+import { useSelector, useDispatch } from 'react-redux';
+
+
 
 function Login(){
 
@@ -10,14 +14,18 @@ function Login(){
     const [senha, setSenha] = useState();
     const [msgTipo, setmsgTipo] = useState();
 
+    const dispatch = useDispatch();
+
     function logar(){
         auth.signInWithEmailAndPassword(email, senha).then(resultado => {
-            setmsgTipo('Sucesso');
+            setmsgTipo('sucesso')
+            dispatch({type: 'LOG_IN', usuarioEmail: email});
         }).catch(erro => {
-            setmsgTipo('erro');
+            setmsgTipo('erro')
         });
-    }
 
+    }
+    {console.log (useSelector(state => state.usuarioEmail))}
 
     return(
        <div className="login-content d-flex align-items-center">
@@ -32,12 +40,9 @@ function Login(){
                 <button onClick = {logar} class="w-100 btn btn-lg btn-login" type="button">Logar</button>
 
                 <div className="msg-login text-white text-center my-5">
-                    {
-                        msgTipo === 'sucesso' && <span> WoW! Você está conectado :P </span>
-                    }
-                    {
-                        msgTipo === 'erro' &&  <span> Ops! Email ou Senha Inválidos</span>
-                    }
+                {msgTipo === 'sucesso' && <span> </span>}
+                {msgTipo === 'erro' && <span><strong>Ops!</strong> Verifique se a senha ou usuário estão corretos! &#128546; </span>}               
+
    
                 </div>
 

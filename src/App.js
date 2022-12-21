@@ -1,5 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import store from '../src/store/index';
+import { Provider } from 'react-redux';
+
 
 
 /*  Páginas  */
@@ -10,14 +13,16 @@ import Home from './view/home/index';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/Login" element={<Login />} />
-        <Route path="/Cadastro" element={<Cadastro />} />
-        <Route path="/" element = {<Home />} />
+    <Provider store= {store} >
+      <BrowserRouter>
+        <Routes>
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Cadastro" element={<Cadastro />} />
+          <Route path="/" element = {<Home />} />
 
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
 
   );
 }
