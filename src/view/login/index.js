@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './login.css';
-import {Link} from 'react-router-dom';
-
-import {auth,db} from '../../config/firebase';
-import 'firebase/auth';
+import {Link,Navigate} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+
+import {auth} from '../../config/firebase';
+import 'firebase/auth';
 
 
 
@@ -19,19 +19,25 @@ function Login(){
     function logar(){
         auth.signInWithEmailAndPassword(email, senha).then(resultado => {
             setmsgTipo('sucesso')
-            dispatch({type: 'LOG_IN', usuarioEmail: email});
+            setTimeout( ()=> {
+                dispatch({type: 'LOG_IN', usuarioEmail: email});
+            },2000)
+
         }).catch(erro => {
             setmsgTipo('erro')
         });
-
+        
     }
-    {console.log (useSelector(state => state.usuarioEmail))}
-
     return(
        <div className="login-content d-flex align-items-center">
+
+        {/* Se usuário estiver logado vai para tela inicial  */}
+        { useSelector(state => state.usuarioLogado) > 0 ? <Navigate to = '/' /> : null } 
+
             <form className="form-signin mx-auto">
                 <div className="text-center mb-4">
-                <h1 className="h3 mb-3 text-white font-weight-bold">Login</h1>
+                <i class="fa-solid fa-feather text-white fa-4x"></i>
+                <h1 className="h3 mb-3 text-white font-weight-bold mt-2">Login</h1>
                 </div>
 
                 <input onChange = {(e) => setEmail(e.target.value)} type="email" class="form-control my-2" id="floatingInput" placeholder="Email" />
@@ -40,14 +46,14 @@ function Login(){
                 <button onClick = {logar} class="w-100 btn btn-lg btn-login" type="button">Logar</button>
 
                 <div className="msg-login text-white text-center my-5">
-                {msgTipo === 'sucesso' && <span> </span>}
+                {msgTipo === 'sucesso' && <span><strong>WoW!</strong> Você está conectado! &#128526;</span>}
                 {msgTipo === 'erro' && <span><strong>Ops!</strong> Verifique se a senha ou usuário estão corretos! &#128546; </span>}               
 
    
                 </div>
 
                 <div className="opcoes-login mt-5">
-                <Link to = '/Cadastro' className="mx-2">Recuperar Senha</Link>
+                <Link to = '/UsuarioRecuperarSenha' className="mx-2">Recuperar Senha</Link>
                 <spam className = "text-white">&#9733;</spam>
                 <Link to = '/Cadastro' className="mx-2">Quero Cadastrar</Link>
                 </div>
