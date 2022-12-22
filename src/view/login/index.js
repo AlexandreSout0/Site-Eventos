@@ -46,8 +46,8 @@ function Login(){
                 <button onClick = {logar} class="w-100 btn btn-lg btn-login" type="button">Logar</button>
 
                 <div className="msg-login text-white text-center my-5">
-                {msgTipo === 'sucesso' && <span><strong>WoW!</strong> Você está conectado! &#128526;</span>}
-                {msgTipo === 'erro' && <span><strong>Ops!</strong> Verifique se a senha ou usuário estão corretos! &#128546; </span>}               
+                {msgTipo === 'sucesso' && <span role="img" aria-label={"Emoji"} ><strong>WoW!</strong> Você está conectado! &#128526;</span>}
+                {msgTipo === 'erro' && <span role="img" aria-label={"Emoji"} ><strong >Ops!</strong> Verifique se a senha ou usuário estão corretos! &#128546; </span>}               
 
    
                 </div>
