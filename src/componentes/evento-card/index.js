@@ -9,7 +9,7 @@ function EventoCard({id,img,titulo,detalhes,vizualizacoes}){
     
     const[urlImagem, setUrlImagem] = useState();
     useEffect(() => {
-        storage.ref(`imagens/$/(img)`).getDownloadURL().then( url => setUrlImagem(url));
+        storage.ref(`imagens/${img}`).getDownloadURL().then( url => setUrlImagem(url));
     });
 
     return(
